@@ -11,7 +11,7 @@ import React from 'react';
 const ComponenteTres = (props) => {
   return(
     <div className="component">
-      <p>Título: {props.title}</p>
+      <h2>Título: {props.title}</h2>
       <p>Subtítulo: {props.subtitle}</p>
     </div>
   )

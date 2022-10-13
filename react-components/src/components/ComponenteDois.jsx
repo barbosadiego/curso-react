@@ -3,7 +3,7 @@ import React from 'react';
 const ComponenteDois = () => {
   return(
     <div className='component'>
-      <p>Título: Componente Dois</p>
+      <h2>Título: Componente Dois</h2>
     </div>
   )
 };

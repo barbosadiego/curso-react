@@ -9,6 +9,7 @@ import ComponenteDois from './components/ComponenteDois';
 import ComponenteTres from './components/ComponenteTres';
 import ComponenteQuatro from './components/ComponenteQuatro';
 import ComponenteCinco from './components/ComponenteCinco';
+import ComponenteSeis from './components/ComponenteSeis';
 
 function App(){
   return(
@@ -27,7 +28,9 @@ function App(){
         </ul>
       </ComponenteQuatro>
 
-      <ComponenteCinco title='cinco' />       
+      <ComponenteCinco title='cinco' />
+
+      <ComponenteSeis title='Componente Seis'/>
     </>
   )
 };

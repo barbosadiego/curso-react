@@ -7,8 +7,6 @@ const ComponenteCinco = ({title}) => {
     <div className="component">
       <h2>Título {title}</h2>
       <ComponenteUm />
-      <ComponenteUm />
-      <ComponenteUm />
       <ComponenteTres title="Componente três" subtitle="Alô mundo!"/>
     </div>
   )
