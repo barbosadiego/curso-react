@@ -1,11 +1,13 @@
-import React from "react";
+import Texto from './components/Texto';
 
-function App(){
-  return(
+function App() {
+  return (
     <div>
-      <h1>Olá React!</h1>
+      <h1>APP</h1>
+      <Texto />
+      <Texto />
     </div>
-  )
-};
+  );
+}
 
 export default App;
