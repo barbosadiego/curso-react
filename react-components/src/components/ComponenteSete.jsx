@@ -6,9 +6,15 @@ const ComponenteSete = ({title, valor}) => {
       <h2>{title}</h2>
       {
         valor ? 
-          <p>verdadeiro</p> 
+          <div>
+            <p>Análise do valor</p>
+            <p>Verdadeiro</p>
+          </div>
           : 
-          <p>falso</p>
+          <div>
+            <p>Análise do Valor</p>
+            <p>Falso</p>
+          </div>
       }
     </div>
   )
