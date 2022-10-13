@@ -10,10 +10,13 @@ import ComponenteTres from './components/ComponenteTres';
 import ComponenteQuatro from './components/ComponenteQuatro';
 import ComponenteCinco from './components/ComponenteCinco';
 import ComponenteSeis from './components/ComponenteSeis';
+import ComponenteSete from './components/ComponenteSete';
 
 function App(){
   return(
     <>
+      <ComponenteSete title='Componente Sete' valor={0}/>
+
       <ComponenteUm />
 
       <ComponenteDois />
@@ -30,7 +33,7 @@ function App(){
 
       <ComponenteCinco title='cinco' />
 
-      <ComponenteSeis title='Componente Seis'/>
+      <ComponenteSeis title='Componente Seis'/>      
     </>
   )
 };
