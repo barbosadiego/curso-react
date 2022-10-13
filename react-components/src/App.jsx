@@ -12,10 +12,13 @@ import ComponenteCinco from './components/ComponenteCinco';
 import ComponenteSeis from './components/ComponenteSeis';
 import ComponenteSete from './components/ComponenteSete';
 import ComponenteOito from './components/ComponenteOito';
+import ComponenteNove from './components/ComponenteNove';
 
 function App(){
   return(
     <>
+      <ComponenteNove title="Componente Nove" valor='joão'/>
+
       <ComponenteOito title="Componente Oito" valor={1}/>
 
       <ComponenteSete title='Componente Sete' valor={0}/>
