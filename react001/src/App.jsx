@@ -6,6 +6,6 @@ function App(){
       <h1>Olá React!</h1>
     </div>
   )
-}
+};
 
-export default App
+export default App;
