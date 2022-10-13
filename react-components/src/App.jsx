@@ -13,10 +13,13 @@ import ComponenteSeis from './components/ComponenteSeis';
 import ComponenteSete from './components/ComponenteSete';
 import ComponenteOito from './components/ComponenteOito';
 import ComponenteNove from './components/ComponenteNove';
+import ComponenteDez from './components/ComponenteDez';
 
 function App(){
   return(
     <>
+      <ComponenteDez title="Componente Dez" cor="red"/>
+
       <ComponenteNove title="Componente Nove" valor='joão'/>
 
       <ComponenteOito title="Componente Oito" valor={1}/>
