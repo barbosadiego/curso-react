@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 const App = () => {
+  const [valor, setValor] = useState(() => 100);
+  const [valor2, setValor2] = useState(() => 10);
 
-  // const [nome, setNome] = useState(() => {
-  //   return 'diego'
-  // });
-
-  // function alterar(){
-  //   setNome(old => 'joaquim')
-  // }
-
-  const [player, setPlayer] = useState({
-    name: 'diego',
-    score: 0,
-  })
-
-  function alterar(){
-    setPlayer(player_anterior => {
-      return {
-        ...player_anterior,
-        score: player_anterior.score + 1,
-      }
-    })
+  function alterar() {
+    setValor((old_valor) => old_valor + 10);
+  } 
+  
+  function alterar2() {
+    setValor2((old_valor) => old_valor + 1);
   }
+
+  useEffect(() => {
+    console.log('alterado');
+  }, [valor]);
 
   return (
     <>
-      <h1>React Hooks - useState</h1>
-      <hr />
-      <h3>Nome: {player.name}</h3>
-      <h3>Pontos: {player.score}</h3>
-      <button onClick={alterar}>Alterar a pontuação</button>
-      {/* <p>Nome: {nome}</p>
-      <button onClick={alterar}>Alterar</button> */}
+      <h1>React Hooks - useEffect</h1>
+      <p>valor 1{valor}</p>
+      <p>valor 2{valor2}</p>
+      <button onClick={alterar}>Alterar</button>
+      <button onClick={alterar2}>Alterar valor 2</button>
     </>
   );
 };

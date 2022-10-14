@@ -3,3 +3,21 @@ body{
   color: whitesmoke;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+button{
+  cursor: pointer;
+  background-color: blueviolet;
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 3px;
+  transition: .1s;
+  margin: 0px 10px;
+}
+
+button:active{
+  box-shadow: 0 0 0 3px rgba(137, 43, 226, 0.8);
+}
