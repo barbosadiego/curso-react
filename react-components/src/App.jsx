@@ -15,11 +15,14 @@ import ComponenteOito from './components/ComponenteOito';
 import ComponenteNove from './components/ComponenteNove';
 import ComponenteDez from './components/ComponenteDez';
 import ComponentePai from './components/comunicacao_direta/ComponentePai';
+import ComponenteMae from './components/comunicacao_indireta/ComponenteMae';
 
 function App(){
   return(
     <>
-      <ComponentePai title='Componente pai'/>
+      <ComponenteMae title='Comunicação indireta'/>
+
+      <ComponentePai title='Comunicação direta'/>
 
       <ComponenteDez title="Componente Dez" cor="red"/>
 
