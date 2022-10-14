@@ -3,25 +3,37 @@ import './App.css';
 
 const App = () => {
 
-  const [valor, setValor] = useState(() => {
-    console.log('aqui')
-    return 0
-  });
+  // const [nome, setNome] = useState(() => {
+  //   return 'diego'
+  // });
 
-  function incremento(){
-    setValor(valor_antigo => valor_antigo + 1);
-  };
+  // function alterar(){
+  //   setNome(old => 'joaquim')
+  // }
 
-  function decremento(){
-    setValor(valor_antigo => valor_antigo - 1);
-  };
+  const [player, setPlayer] = useState({
+    name: 'diego',
+    score: 0,
+  })
+
+  function alterar(){
+    setPlayer(player_anterior => {
+      return {
+        ...player_anterior,
+        score: player_anterior.score + 1,
+      }
+    })
+  }
 
   return (
     <>
       <h1>React Hooks - useState</h1>
-      <p>{valor}</p>
-      <button onClick={incremento}>Aumentar</button>
-      <button onClick={decremento}>Diminuir</button>
+      <hr />
+      <h3>Nome: {player.name}</h3>
+      <h3>Pontos: {player.score}</h3>
+      <button onClick={alterar}>Alterar a pontuação</button>
+      {/* <p>Nome: {nome}</p>
+      <button onClick={alterar}>Alterar</button> */}
     </>
   );
 };
