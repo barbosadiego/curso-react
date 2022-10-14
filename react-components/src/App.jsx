@@ -2,29 +2,31 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const App = () => {
   const [texto, setTexto] = useState('');
-  const total = useRef(1);
+  const inputRef = useRef();
+  const inputRef2 = useRef();
 
-  // console.log(total);
+  function focus1() {
+    inputRef.current.focus();
+  }
 
-  useEffect(() => {
-    total.current++;
-  });
+  function focus2() {
+    inputRef2.current.focus();
+  }
 
   return (
     <>
       <h1>useRef</h1>
       <hr />
       <input
+        ref={inputRef}
         type="text"
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
       />
+      <input type="text" ref={inputRef2} />
       <hr />
-      <p>
-        O texto é: <strong>{texto}</strong>
-      </p>
-      <hr />
-      <p>Total: {total.current}</p>
+      <button onClick={focus1}>Focus 1</button>
+      <button onClick={focus2}>Focus 2</button>
     </>
   );
 };
