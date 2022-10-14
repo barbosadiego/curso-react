@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import User from './components/User';
+import './App.css'
 
 const App = () => {
-  const [valor, setValor] = useState(() => 100);
-  const [valor2, setValor2] = useState(() => 10);
+  //state
+  const [users, setUsers] = useState(() => []);
 
-  function alterar() {
-    setValor((old_valor) => old_valor + 10);
-  } 
-  
-  function alterar2() {
-    setValor2((old_valor) => old_valor + 1);
-  }
-
+  //effect
   useEffect(() => {
-    console.log('alterado');
-  }, [valor]);
+    fetch('https://dummyjson.com/users')
+      .then((res) => res.json())
+      .then((json) => {
+        console.clear();
+        console.log(json.users);
+        setUsers(json.users);
+      });
+  }, []);
 
   return (
     <>
-      <h1>React Hooks - useEffect</h1>
-      <p>valor 1{valor}</p>
-      <p>valor 2{valor2}</p>
-      <button onClick={alterar}>Alterar</button>
-      <button onClick={alterar2}>Alterar valor 2</button>
+      <h1>Usuários inscritos</h1>
+      <hr />
+      {users.map((user) => (
+        <User user={user} key={user.id}/>
+      ))}
     </>
   );
 };
