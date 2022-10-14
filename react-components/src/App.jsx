@@ -3,7 +3,10 @@ import './App.css';
 
 const App = () => {
 
-  const [valor, setValor] = useState(0);
+  const [valor, setValor] = useState(() => {
+    console.log('aqui')
+    return 0
+  });
 
   function incremento(){
     setValor(valor_antigo => valor_antigo + 1);
