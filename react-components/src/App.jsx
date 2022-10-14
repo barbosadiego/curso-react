@@ -14,10 +14,13 @@ import ComponenteSete from './components/ComponenteSete';
 import ComponenteOito from './components/ComponenteOito';
 import ComponenteNove from './components/ComponenteNove';
 import ComponenteDez from './components/ComponenteDez';
+import ComponentePai from './components/comunicacao_direta/ComponentePai';
 
 function App(){
   return(
     <>
+      <ComponentePai title='Componente pai'/>
+
       <ComponenteDez title="Componente Dez" cor="red"/>
 
       <ComponenteNove title="Componente Nove" valor='joão'/>
