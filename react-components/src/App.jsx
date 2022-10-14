@@ -1,29 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import User from './components/User';
-import './App.css'
+import React, { useState, useEffect, useRef } from 'react';
 
 const App = () => {
-  //state
-  const [users, setUsers] = useState(() => []);
+  const [texto, setTexto] = useState('');
+  const total = useRef(1);
 
-  //effect
+  // console.log(total);
+
   useEffect(() => {
-    fetch('https://dummyjson.com/users')
-      .then((res) => res.json())
-      .then((json) => {
-        console.clear();
-        console.log(json.users);
-        setUsers(json.users);
-      });
-  }, []);
+    total.current++;
+  });
 
   return (
     <>
-      <h1>Usuários inscritos</h1>
+      <h1>useRef</h1>
       <hr />
-      {users.map((user) => (
-        <User user={user} key={user.id}/>
-      ))}
+      <input
+        type="text"
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+      />
+      <hr />
+      <p>
+        O texto é: <strong>{texto}</strong>
+      </p>
+      <hr />
+      <p>Total: {total.current}</p>
     </>
   );
 };
