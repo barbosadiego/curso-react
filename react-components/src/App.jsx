@@ -1,56 +1,31 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import Nomes from './Nomes';
 
-// CSS
-import './App.css';
+const App = () => {
+  const [nome, setNome] = useState('');
+  const [listaNomes, setListaNomes] = useState([]);
+  const inputNome = useRef();
 
-// Componentes
-import ComponenteUm from './components/ComponenteUm';
-import ComponenteDois from './components/ComponenteDois';
-import ComponenteTres from './components/ComponenteTres';
-import ComponenteQuatro from './components/ComponenteQuatro';
-import ComponenteCinco from './components/ComponenteCinco';
-import ComponenteSeis from './components/ComponenteSeis';
-import ComponenteSete from './components/ComponenteSete';
-import ComponenteOito from './components/ComponenteOito';
-import ComponenteNove from './components/ComponenteNove';
-import ComponenteDez from './components/ComponenteDez';
-import ComponentePai from './components/comunicacao_direta/ComponentePai';
-import ComponenteMae from './components/comunicacao_indireta/ComponenteMae';
+  function guardarNome() {
+    setListaNomes((tmp) => [...tmp, nome]);
+    setNome('');
+    inputNome.current.focus();
+  }
 
-function App(){
-  return(
+  return (
     <>
-      <ComponenteMae title='Comunicação indireta'/>
-
-      <ComponentePai title='Comunicação direta'/>
-
-      <ComponenteDez title="Componente Dez" cor="red"/>
-
-      <ComponenteNove title="Componente Nove" valor='joão'/>
-
-      <ComponenteOito title="Componente Oito" valor={1}/>
-
-      <ComponenteSete title='Componente Sete' valor={0}/>
-
-      <ComponenteUm />
-
-      <ComponenteDois />
-
-      <ComponenteTres title='teste' subtitle='subtítulo de teste'/>
-
-      <ComponenteQuatro title='ola'>
-        <ul>
-          <li>item 1</li>
-          <li>item 2</li>
-          <li>item 3</li>
-        </ul>
-      </ComponenteQuatro>
-
-      <ComponenteCinco title='cinco' />
-
-      <ComponenteSeis title='Componente Seis'/>      
+      <h1>React Unique ID</h1>
+      <hr />
+      <input
+        ref={inputNome}
+        type="text"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      />
+      <button onClick={guardarNome}>Guardar nome</button>
+      {listaNomes.length > 0 && <Nomes nomes={listaNomes}/>}
     </>
-  )
+  );
 };
 
 export default App;
