@@ -1,32 +1,62 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
 const App = () => {
-  const [texto, setTexto] = useState('');
-  const inputRef = useRef();
-  const inputRef2 = useRef();
+  //state
+  const [listaTarefas, setListaTarefas] = useState(() => []);
+  const [tarefa, setTarefa] = useState(() => '');
 
-  function focus1() {
+  //ref
+  const idTarefa = useRef(0);
+  const inputRef = useRef();
+
+  //metodos
+  function adicionarTarefa() {
+    setListaTarefas((old) => {
+      return [
+        ...old,
+        {
+          id: idTarefa.current,
+          texto: tarefa,
+        },
+      ];
+    });
+    idTarefa.current++;
+    setTarefa('');
     inputRef.current.focus();
   }
 
-  function focus2() {
-    inputRef2.current.focus();
+  function limparTarefas() {
+    setListaTarefas((old) => []);
+    idTarefa.current = 0;
+  }
+
+  function removerTarefa(id) {
+    const tmp = listaTarefas.filter((tarefa) => tarefa.id !== id);
+    setListaTarefas((old) => tmp);
   }
 
   return (
     <>
-      <h1>useRef</h1>
+      <h1>GESTOR DE TAREFAS</h1>
       <hr />
       <input
         ref={inputRef}
         type="text"
-        value={texto}
-        onChange={(e) => setTexto(e.target.value)}
+        value={tarefa}
+        onChange={(e) => setTarefa(e.target.value)}
       />
-      <input type="text" ref={inputRef2} />
+      <div>
+        <button onClick={adicionarTarefa}>Adicionar</button>
+        <button onClick={limparTarefas}>Limpar tudo</button>
+      </div>
       <hr />
-      <button onClick={focus1}>Focus 1</button>
-      <button onClick={focus2}>Focus 2</button>
+      <p>Tarefas: </p>
+      {listaTarefas.map((tarefa) => (
+        <p key={tarefa.id}>
+          {tarefa.texto} -{' '}
+          <button onClick={() => removerTarefa(tarefa.id)}>Remover</button>
+        </p>
+      ))}
     </>
   );
 };
