@@ -1,63 +1,55 @@
 import React, { useReducer } from 'react';
 
 const App = (props) => {
-  // const [valor, setValor] = useState(100);
-  // const [mostrar, setMostrar] = useState(false);
-
-  // function incrementar() {
-  //   setValor((oldValor) => oldValor + 1);
-  // }
-
-  // return (
-  //   <div>
-  //     <h1>React useReducer</h1>
-  //     <p>valor: {valor}</p>
-  //     {mostrar && <p>valor visível</p>}
-  //     <button onClick={incrementar}>Incrementar</button>
-  //     <button onClick={() => setMostrar((old) => !old)}>
-  //       Exibir/ocultar valor
-  //     </button>
-  //   </div>
-  // );
-
-  // useReducer
   const [state, dispatch] = useReducer(reducer, {
-    valor: 1000,
-    mostrar: false,
+    score_1: 0,
+    score_2: 0,
   });
 
   function reducer(state, action) {
     switch (action.type) {
-      case 'incrementar':
+      case 'SCORE1':
         return {
-          valor: state.valor + 1,
-          mostrar: state.mostrar,
+          score_1: state.score_1 + 1,
+          score_2: state.score_2,
         };
-        break;
-      case 'visibilidade':
+      case 'SCORE2':
         return {
-          valor: state.valor,
-          mostrar: !state.mostrar,
+          score_1: state.score_1,
+          score_2: state.score_2 + 1,
         };
-        break;
+      case 'RESET':
+        return {
+          score_1: 0,
+          score_2: 0,
+        };
       default:
         return state;
     }
   }
 
+  function incrementar1() {
+    dispatch({ type: 'SCORE1' });
+  }
+
+  function incrementar2() {
+    dispatch({ type: 'SCORE2' });
+  }
+
+  function reset() {
+    dispatch({ type: 'RESET' });
+  }
+
   return (
-    <div>
+    <>
       <h3>React - useReducer</h3>
       <hr />
-      <button onClick={() => dispatch({ type: 'incrementar' })}>
-        Incrementar
-      </button>
-      <button onClick={() => dispatch({ type: 'visibilidade' })}>
-        Exibir/Ocultar
-      </button>
-      <p>Valor: {state.valor}</p>
-      {state.mostrar && <p>Valor visível</p>}
-    </div>
+      <h3>Player 1: {state.score_1}</h3>
+      <h3>Player 2: {state.score_2}</h3>
+      <button onClick={incrementar1}>Player1</button>
+      <button onClick={incrementar2}>Player2</button>
+      <button onClick={reset}>Reset score</button>
+    </>
   );
 };
 
