@@ -1,40 +1,62 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useReducer } from 'react';
 
 const App = (props) => {
-  const [valor, setValor] = useState(() => 0);
-  const [numero, setNumero] = useState(() => 1000);
-  // const valorCalculado = funcaoDemorada(valor);
+  // const [valor, setValor] = useState(100);
+  // const [mostrar, setMostrar] = useState(false);
 
-  const valorCalculado = useMemo(() => {
-    return funcaoDemorada(valor)
-  }, [valor])
+  // function incrementar() {
+  //   setValor((oldValor) => oldValor + 1);
+  // }
 
-  function funcaoDemorada(num){
-    for(let i = 0; i < 1000000000; i++){}
-    return num * 2;
+  // return (
+  //   <div>
+  //     <h1>React useReducer</h1>
+  //     <p>valor: {valor}</p>
+  //     {mostrar && <p>valor visível</p>}
+  //     <button onClick={incrementar}>Incrementar</button>
+  //     <button onClick={() => setMostrar((old) => !old)}>
+  //       Exibir/ocultar valor
+  //     </button>
+  //   </div>
+  // );
+
+  // useReducer
+  const [state, dispatch] = useReducer(reducer, {
+    valor: 1000,
+    mostrar: false,
+  });
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'incrementar':
+        return {
+          valor: state.valor + 1,
+          mostrar: state.mostrar,
+        };
+        break;
+      case 'visibilidade':
+        return {
+          valor: state.valor,
+          mostrar: !state.mostrar,
+        };
+        break;
+      default:
+        return state;
+    }
   }
-
-  function incrementar() {
-    setValor((oldValor) => oldValor + 1);
-  }
-
-  function incrementar2() {
-    setNumero((oldNum) => oldNum + 1);
-  }
-
-  useEffect(() => {
-    console.log('ok')
-  })
 
   return (
     <div>
-      <h3>React useMemo</h3>
+      <h3>React - useReducer</h3>
       <hr />
-      <p>Valor: {valor}</p>
-      <p>Valor calculado: {valorCalculado}</p>
-      <p>Número: {numero}</p>
-      <button onClick={incrementar}>Incrementar</button>
-      <button onClick={incrementar2}>Incrementar 2</button>
+      <button onClick={() => dispatch({ type: 'incrementar' })}>
+        Incrementar
+      </button>
+      <button onClick={() => dispatch({ type: 'visibilidade' })}>
+        Exibir/Ocultar
+      </button>
+      <p>Valor: {state.valor}</p>
+      {state.mostrar && <p>Valor visível</p>}
     </div>
   );
 };
