@@ -1,63 +1,41 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
-const App = () => {
-  //state
-  const [listaTarefas, setListaTarefas] = useState(() => []);
-  const [tarefa, setTarefa] = useState(() => '');
+const App = (props) => {
+  const [valor, setValor] = useState(() => 0);
+  const [numero, setNumero] = useState(() => 1000);
+  // const valorCalculado = funcaoDemorada(valor);
 
-  //ref
-  const idTarefa = useRef(0);
-  const inputRef = useRef();
+  const valorCalculado = useMemo(() => {
+    return funcaoDemorada(valor)
+  }, [valor])
 
-  //metodos
-  function adicionarTarefa() {
-    setListaTarefas((old) => {
-      return [
-        ...old,
-        {
-          id: idTarefa.current,
-          texto: tarefa,
-        },
-      ];
-    });
-    idTarefa.current++;
-    setTarefa('');
-    inputRef.current.focus();
+  function funcaoDemorada(num){
+    for(let i = 0; i < 1000000000; i++){}
+    return num * 2;
   }
 
-  function limparTarefas() {
-    setListaTarefas((old) => []);
-    idTarefa.current = 0;
+  function incrementar() {
+    setValor((oldValor) => oldValor + 1);
   }
 
-  function removerTarefa(id) {
-    const tmp = listaTarefas.filter((tarefa) => tarefa.id !== id);
-    setListaTarefas((old) => tmp);
+  function incrementar2() {
+    setNumero((oldNum) => oldNum + 1);
   }
+
+  useEffect(() => {
+    console.log('ok')
+  })
 
   return (
-    <>
-      <h1>GESTOR DE TAREFAS</h1>
+    <div>
+      <h3>React useMemo</h3>
       <hr />
-      <input
-        ref={inputRef}
-        type="text"
-        value={tarefa}
-        onChange={(e) => setTarefa(e.target.value)}
-      />
-      <div>
-        <button onClick={adicionarTarefa}>Adicionar</button>
-        <button onClick={limparTarefas}>Limpar tudo</button>
-      </div>
-      <hr />
-      <p>Tarefas: </p>
-      {listaTarefas.map((tarefa) => (
-        <p key={tarefa.id}>
-          {tarefa.texto} -{' '}
-          <button onClick={() => removerTarefa(tarefa.id)}>Remover</button>
-        </p>
-      ))}
-    </>
+      <p>Valor: {valor}</p>
+      <p>Valor calculado: {valorCalculado}</p>
+      <p>Número: {numero}</p>
+      <button onClick={incrementar}>Incrementar</button>
+      <button onClick={incrementar2}>Incrementar 2</button>
+    </div>
   );
 };
 
