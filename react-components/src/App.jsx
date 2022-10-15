@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import ListaContatos from './components/ListaContatos';
+import './App.css'
 
 const App = () => {
   //states
@@ -28,15 +30,17 @@ const App = () => {
       <h1>Minha lista de contatos</h1>
       <hr />
       <div>
-        <input ref={nome} type="text" onChange={definirNome} value={contato.nome} />
+        <label htmlFor="nome">Nome:</label>
+        <input ref={nome} type="text" onChange={definirNome} value={contato.nome} id="nome" />
       </div>
       <div>
-        <input type="text" onChange={definirTelefone} value={contato.telefone} />
+        <label htmlFor="tel">Telefone: </label>
+        <input type="text" onChange={definirTelefone} value={contato.telefone} id="tel"/>
       </div>
       <button onClick={adicionarContato}>Adicionar Contato</button>
       <hr />
-      {listaContatos.length > 0 && <h3>Meus contatos:</h3>}
-      {listaContatos.map((item, index) => <p key={index}>{item.nome} {item.telefone}</p>)}
+      {listaContatos.length > 0 && <ListaContatos lista={listaContatos}/>}
+      
     </>
   );
 };

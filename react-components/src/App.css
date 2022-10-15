@@ -1,0 +1,11 @@
+label{
+  display: block;
+}
+
+input{
+  margin-bottom: 10px;
+}
+
+button{
+  cursor: pointer;
+}
