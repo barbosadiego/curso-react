@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Contato from './components/Contato';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faList } from '@fortawesome/free-solid-svg-icons';
+
 import './App.css';
 
 const App = () => {
@@ -76,7 +80,10 @@ const App = () => {
       <div className="container-fluid titulo">
         <div className="row">
           <div className="col text-center">
-            <h1 className="text-center ">MINHA LISTA DE CONTATOS</h1>
+            <h1 className="text-center ">
+              <FontAwesomeIcon icon={faList} className="me-3"/>
+              MINHA LISTA DE CONTATOS
+            </h1>
           </div>
         </div>
       </div>
@@ -84,13 +91,14 @@ const App = () => {
       <div className="container-fluid formulario">
         <div className="row">
           <div className="col p-3">
-
             <div className="row justify-content-center">
-              <div className="col-4">
+              <div className="col-12 col-sm-8 col-md-6 col-lg-4">
                 <div>
-                  <label className='mb-3' htmlFor="nome">Nome</label>
+                  <label className="mb-3" htmlFor="nome">
+                    Nome
+                  </label>
                   <input
-                    className='form-control'
+                    className="form-control"
                     ref={inputNome}
                     type="text"
                     onChange={definirNome}
@@ -99,9 +107,11 @@ const App = () => {
                   />
                 </div>
                 <div>
-                  <label className='mb-3' htmlFor="tel">Telefone</label>
+                  <label className="mb-3" htmlFor="tel">
+                    Telefone
+                  </label>
                   <input
-                    className='form-control'
+                    className="form-control"
                     ref={inputTelefone}
                     type="text"
                     onChange={definirTelefone}
@@ -110,11 +120,21 @@ const App = () => {
                     id="tel"
                   />
                 </div>
+                <div className="row mt-3">
+                  <div className="col text-start">
+                    <button className='btn btn-outline-warning' onClick={adicionarContato}>
+                      Adicionar Contato
+                    </button>
+                  </div>
+                  <div className="col text-end">
+                    <button className='btn btn-outline-warning' onClick={() => setListaContatos([])}>
+                      <FontAwesomeIcon icon={faTrash} className="me-2"/>
+                      Limpar lista
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <button onClick={adicionarContato}>Adicionar Contato</button>
-            <button onClick={() => setListaContatos([])}>Limpar lista</button>
           </div>
         </div>
       </div>
