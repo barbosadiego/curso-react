@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Contato from './components/Contato';
 import './App.css';
 
@@ -43,11 +43,24 @@ const App = () => {
     inputNome.current.focus();
   }
 
-  function verificaTecla(e){
-    if(e.code === 'Enter'){
+  function verificaTecla(e) {
+    if (e.code === 'Enter') {
       adicionarContato();
     }
   }
+
+  //local storage
+  //carregar do local storage
+  useEffect(() => {
+    if (localStorage.getItem('contatos') !== null) {
+      setListaContatos(JSON.parse(localStorage.getItem('contatos')));
+    }
+  }, []);
+
+  //salvar no local storage
+  useEffect(() => {
+    localStorage.setItem('contatos', JSON.stringify(listaContatos));
+  }, [listaContatos]);
 
   return (
     <>
