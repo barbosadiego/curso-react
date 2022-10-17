@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Contato = ({ nome, telefone, removerContato }) => {
+const Contato = ({ id, nome, telefone, removerContato }) => {
   return (
     <div>
-      <button onClick={() => removerContato(telefone)}>Remover</button>
+      <button onClick={() => removerContato(id)}>Remover</button>
       {nome} - {telefone}
     </div>
   );

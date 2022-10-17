@@ -4,7 +4,7 @@ import './App.css';
 
 const App = () => {
   //states
-  const [contato, setContato] = useState({ nome: '', telefone: '' });
+  const [contato, setContato] = useState({ id: '', nome: '', telefone: '' });
   const [listaContatos, setListaContatos] = useState([]);
 
   //ref
@@ -34,7 +34,7 @@ const App = () => {
     }
 
     //adicionar novo contato
-    setListaContatos((old) => [...old, contato]);
+    setListaContatos((old) => [...old, {...contato, id: generateId()}]);
 
     //limpar campos
     setContato((old) => ({ nome: '', telefone: '' }));
@@ -49,9 +49,13 @@ const App = () => {
     }
   }
 
-  function removerContato(telefone) {
+  function removerContato(id) {
     const novaLista = JSON.parse(localStorage.getItem('contatos'))
-    setListaContatos(novaLista.filter(item => item.telefone !== telefone))
+    setListaContatos(novaLista.filter(item => item.id !== id))
+  }
+
+  function generateId(){
+    return Date.now().toString();
   }
 
   //local storage
@@ -99,7 +103,7 @@ const App = () => {
       {listaContatos.map((contato, index) => (
         <Contato
           key={index}
-          index={index}
+          id={contato.id}
           nome={contato.nome}
           telefone={contato.telefone}
           removerContato={removerContato}
