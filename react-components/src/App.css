@@ -1,10 +1,13 @@
-.titulo{
-  padding: 20px;
+.formulario {
+  background-color: rgb(44, 61, 98);
+  color: white;
+}
+
+body {
   background-color: rgb(27, 42, 74);
   color: white;
 }
 
-.formulario{
-  background-color: rgb(44, 61, 98);
-  color: white;
+.titulo {
+  padding: 20px;
 }

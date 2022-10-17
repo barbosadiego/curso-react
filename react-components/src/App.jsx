@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Contato from './components/Contato';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faList } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faList, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 
@@ -123,6 +123,7 @@ const App = () => {
                 <div className="row mt-3">
                   <div className="col text-start">
                     <button className='btn btn-outline-warning' onClick={adicionarContato}>
+                      <FontAwesomeIcon icon={faCirclePlus} className="me-2"/>
                       Adicionar Contato
                     </button>
                   </div>
