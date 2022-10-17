@@ -34,7 +34,7 @@ const App = () => {
     }
 
     //adicionar novo contato
-    setListaContatos((old) => [...old, {...contato, id: generateId()}]);
+    setListaContatos((old) => [...old, { ...contato, id: generateId() }]);
 
     //limpar campos
     setContato((old) => ({ nome: '', telefone: '' }));
@@ -50,11 +50,11 @@ const App = () => {
   }
 
   function removerContato(id) {
-    const novaLista = JSON.parse(localStorage.getItem('contatos'))
-    setListaContatos(novaLista.filter(item => item.id !== id))
+    const novaLista = JSON.parse(localStorage.getItem('contatos'));
+    setListaContatos(novaLista.filter((item) => item.id !== id));
   }
 
-  function generateId(){
+  function generateId() {
     return Date.now().toString();
   }
 
@@ -73,32 +73,52 @@ const App = () => {
 
   return (
     <>
-      <h1>Minha lista de contatos</h1>
-      <hr />
-      <div>
-        <label htmlFor="nome">Nome:</label>
-        <input
-          ref={inputNome}
-          type="text"
-          onChange={definirNome}
-          value={contato.nome}
-          id="nome"
-        />
+      <div className="container-fluid titulo">
+        <div className="row">
+          <div className="col text-center">
+            <h1 className="text-center ">MINHA LISTA DE CONTATOS</h1>
+          </div>
+        </div>
       </div>
-      <div>
-        <label htmlFor="tel">Telefone: </label>
-        <input
-          ref={inputTelefone}
-          type="text"
-          onChange={definirTelefone}
-          onKeyUp={verificaTecla}
-          value={contato.telefone}
-          id="tel"
-        />
+
+      <div className="container-fluid formulario">
+        <div className="row">
+          <div className="col p-3">
+
+            <div className="row justify-content-center">
+              <div className="col-4">
+                <div>
+                  <label className='mb-3' htmlFor="nome">Nome</label>
+                  <input
+                    className='form-control'
+                    ref={inputNome}
+                    type="text"
+                    onChange={definirNome}
+                    value={contato.nome}
+                    id="nome"
+                  />
+                </div>
+                <div>
+                  <label className='mb-3' htmlFor="tel">Telefone</label>
+                  <input
+                    className='form-control'
+                    ref={inputTelefone}
+                    type="text"
+                    onChange={definirTelefone}
+                    onKeyUp={verificaTecla}
+                    value={contato.telefone}
+                    id="tel"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button onClick={adicionarContato}>Adicionar Contato</button>
+            <button onClick={() => setListaContatos([])}>Limpar lista</button>
+          </div>
+        </div>
       </div>
-      <button onClick={adicionarContato}>Adicionar Contato</button>
-      <button onClick={() => setListaContatos([])}>Limpar lista</button>
-      <hr />
+
       {/* apresentação da lista de contatos */}
       {listaContatos.map((contato, index) => (
         <Contato
