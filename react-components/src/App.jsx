@@ -88,6 +88,7 @@ const App = () => {
         />
       </div>
       <button onClick={adicionarContato}>Adicionar Contato</button>
+      <button onClick={() => setListaContatos([])}>Limpar lista</button>
       <hr />
       {/* apresentação da lista de contatos */}
       {listaContatos.map((contato, index) => (
