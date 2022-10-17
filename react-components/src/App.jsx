@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import ListaContatos from './components/ListaContatos';
+import Contato from './components/Contato';
 import './App.css';
 
 const App = () => {
@@ -8,7 +8,8 @@ const App = () => {
   const [listaContatos, setListaContatos] = useState([]);
 
   //ref
-  const nome = useRef();
+  const inputNome = useRef();
+  const inputTelefone = useRef();
 
   //métodos
   function definirNome(e) {
@@ -20,11 +21,26 @@ const App = () => {
   }
 
   function adicionarContato() {
+    //validar campos
     if (contato.nome === '' || contato.telefone === '') return false;
 
+    //verificar se contato já existe
+    const duplicado = listaContatos.find(
+      (ct) => ct.nome === contato.nome && ct.telefone === contato.telefone,
+    );
+    if (typeof duplicado !== 'undefined') {
+      inputTelefone.current.focus();
+      return false;
+    }
+
+    //adicionar novo contato
     setListaContatos((old) => [...old, contato]);
+
+    //limpar campos
     setContato((old) => ({ nome: '', telefone: '' }));
-    nome.current.focus();
+
+    //dar foco no input
+    inputNome.current.focus();
   }
 
   return (
@@ -34,7 +50,7 @@ const App = () => {
       <div>
         <label htmlFor="nome">Nome:</label>
         <input
-          ref={nome}
+          ref={inputNome}
           type="text"
           onChange={definirNome}
           value={contato.nome}
@@ -44,6 +60,7 @@ const App = () => {
       <div>
         <label htmlFor="tel">Telefone: </label>
         <input
+          ref={inputTelefone}
           type="text"
           onChange={definirTelefone}
           value={contato.telefone}
@@ -52,7 +69,10 @@ const App = () => {
       </div>
       <button onClick={adicionarContato}>Adicionar Contato</button>
       <hr />
-      {listaContatos.length > 0 && <ListaContatos lista={listaContatos} />}
+      {/* apresentação da lista de contatos */}
+      {listaContatos.map((contato, index) => (
+        <Contato key={index} nome={contato.nome} telefone={contato.telefone} />
+      ))}
     </>
   );
 };
