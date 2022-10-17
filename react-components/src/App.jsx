@@ -49,6 +49,11 @@ const App = () => {
     }
   }
 
+  function removerContato(telefone) {
+    const novaLista = JSON.parse(localStorage.getItem('contatos'))
+    setListaContatos(novaLista.filter(item => item.telefone !== telefone))
+  }
+
   //local storage
   //carregar do local storage
   useEffect(() => {
@@ -92,7 +97,13 @@ const App = () => {
       <hr />
       {/* apresentação da lista de contatos */}
       {listaContatos.map((contato, index) => (
-        <Contato key={index} nome={contato.nome} telefone={contato.telefone} />
+        <Contato
+          key={index}
+          index={index}
+          nome={contato.nome}
+          telefone={contato.telefone}
+          removerContato={removerContato}
+        />
       ))}
     </>
   );
