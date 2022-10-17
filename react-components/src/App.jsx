@@ -43,6 +43,12 @@ const App = () => {
     inputNome.current.focus();
   }
 
+  function verificaTecla(e){
+    if(e.code === 'Enter'){
+      adicionarContato();
+    }
+  }
+
   return (
     <>
       <h1>Minha lista de contatos</h1>
@@ -63,6 +69,7 @@ const App = () => {
           ref={inputTelefone}
           type="text"
           onChange={definirTelefone}
+          onKeyUp={verificaTecla}
           value={contato.telefone}
           id="tel"
         />
